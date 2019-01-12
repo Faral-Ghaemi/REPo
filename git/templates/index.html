@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>repository Home</h1>
+
+  <p>Welcome to <em>GIT</em>, repository </p>
+
+<h2>All repositoris</h2>
+
+  <ul>
+    {% for r in rep %}
+      <li>{{r.name}} / {{ r.usern }}</li>
+      {% endfor %}
+  </ul>
+
+
+{% endblock %}
