@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>{{ obj.name }}</h1>
+<ul>
+{% for f in folder %}
+    <li>{{ f }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -8,7 +8,12 @@
 
       {% for r in rep %}
       <li>
-        <a href="{{ r.name }}">{{ r.name }}</a> ({{r.get_user_names}})
+        <a href="{{ r.id }}">{{ r.name }}</a> ({{r.get_user_names}})
+      </li>
+      {% endfor %}
+      {% for f in folder %}
+      <li>
+        <a href="#">{{ f }}</a>
       </li>
       {% endfor %}
 

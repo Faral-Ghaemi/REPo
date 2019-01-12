@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from . import models
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
@@ -28,7 +28,7 @@ def index(request):
     #         raise
 def userrepView(request):
     repha=models.repository.objects.filter(usern=request.user)
-    filelisting = FileListing(site.storage.location, sorting_by='date', sorting_order='desc')
+    filelisting = FileListing('git', sorting_by='date', sorting_order='desc')
 
     context = {
         'rep': repha,
@@ -38,8 +38,20 @@ def userrepView(request):
     return HttpResponse(template.render(context,request))
 
 
-def repview(request, username, name):
-    return
+def repview(request, id):
+    obj = get_object_or_404(models.repository, pk=id)
+    rep=models.repository.objects.get(id=id)
+    pathh = rep.name
+    filelisting = FileListing('repository/'+pathh, sorting_by=None, sorting_order=None)
+
+    template = loader.get_template('repview.html')
+    context = {
+        'obj' : obj,
+        'rep' : rep,
+        'folder' : filelisting.listing(),
+    }
+    return HttpResponse(template.render(context, request))
+
 
 def signup(request):
     if request.method == 'POST':

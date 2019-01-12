@@ -4,15 +4,11 @@ from django.contrib.auth.models import User
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'repository/{0}/'.format(instance.name)
+    return 'repository/{0}/{1}'.format(instance.name, filename)
 
 
 class repository(models.Model):
     name = models.CharField(max_length=150)
-    def getuser(self):
-        return self.request.user
-
-    creator = getuser
     usern = models.ManyToManyField(User)
     upload = models.FileField(upload_to=user_directory_path)
 
