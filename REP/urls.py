@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/filebrowser/', site.urls),
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
+    path('avatar/', include('avatar.urls')),
     path('git/', include('git.urls'), name='git'),
     path('accounts/', include('django.contrib.auth.urls') ,name='accounts'),
     path('accounts/signup/', views.signup ,name='signup'),
