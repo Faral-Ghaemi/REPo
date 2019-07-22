@@ -8,17 +8,22 @@ from .forms import SignUpForm
 from django.contrib.auth import login, authenticate
 from filebrowser.sites import site
 from filebrowser.base import FileListing
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy,reverse
+
 
 def index(request):
     """
     View function for home page of site.
     """
     rep = models.repository.objects.all()
+    c=os.system("ipconfig")
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
         'index.html',
-        context={'rep' : rep},
+        context={'rep' : rep,
+        'c' : c},
     )
     #
     # try:
@@ -66,3 +71,13 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+class RepCreate(LoginRequiredMixin,generic.CreateView):
+    model = models.repository
+    success_url = reverse_lazy('index')
+    fields = ['name','upload']
+#    initial={'usern':request.user,}
+
+    def form_valid(self, form):
+        form.instance.usern = self.request.user
+        return super().form_valid(form)

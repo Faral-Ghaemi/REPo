@@ -31,7 +31,5 @@ urlpatterns = [
     path('accounts/signup/', views.signup ,name='signup'),
 
 
-
 ]
-
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

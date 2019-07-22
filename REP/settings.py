@@ -34,7 +34,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'avatar',
     'grappelli',
     'filebrowser',
     'bootstrap_admin',
@@ -129,4 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     "/git/",
+#     "/git/static",
+# ]
 THUMBNAIL_HIGH_RESOLUTION = True

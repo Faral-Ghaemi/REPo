@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.forms.models import inlineformset_factory
+from django.core.files.images import get_image_dimensions
+from git.models import UserProfile
 
 
 class SignUpForm(UserCreationForm):

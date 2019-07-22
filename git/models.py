@@ -20,3 +20,8 @@ class repository(models.Model):
 
     def __unicode__(self):
         return "{0}".format(self.name)
+
+
+class UserProfile(models.Model):
+    user   = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField()
